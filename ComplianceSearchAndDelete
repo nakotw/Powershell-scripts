@@ -1,0 +1,6 @@
+Connect-IPPSSession #connect to compliance center
+New-ComplianceSearch -Name 'Mysearch' -ExchangeLocation All -ContentMatchQuery 'Subject:"Mysearch"' #create a new search with arguments
+Start-ComplianceSearch 'Mysearch' #Start the search created previously
+Get-ComplianceSearch 'Mysearch' | Select SuccessResults #check if search is completed or not
+New-ComplianceSearchAction -SearchName 'Mysearch' -Purge -PurgeType HardDelete -Force #delete results from previous search created
+Get-ComplianceSearchAction 'Mysearch_Purge' | Select * #confirm deletion status 
