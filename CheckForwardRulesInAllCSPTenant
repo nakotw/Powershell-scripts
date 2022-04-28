@@ -57,4 +57,3 @@ foreach ($customer in $customers) {
         }
     }
 }
-#stop
