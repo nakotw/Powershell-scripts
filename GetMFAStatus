@@ -7,17 +7,6 @@
    
 	It will return the MFA Status, MFA type (
 
-.NOTES
-  Name: Get-MFAStatus
-  Author: R. Mens - LazyAdmin.nl
-  Version: 1.6
-  DateCreated: jan 2021
-  Purpose/Change: Added registered email and phonenumber
-	Thanks to: Anthony Bartolo
-
-.LINK
-  https://lazyadmin.nl
-
 .EXAMPLE
   Get-MFAStatus
 
