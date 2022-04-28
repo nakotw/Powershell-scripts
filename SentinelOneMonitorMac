@@ -1,0 +1,93 @@
+#!/bin/bash
+# Monitor if SentinelOne on MacOS is installed/running
+
+MACOSVER=$(sw_vers -productVersion)
+echo "MacOS version: $MACOSVER"
+ExitCode=1
+
+if [ -f "/usr/local/bin/sentinelctl" ] ; then
+
+  S1VERSION=$( /usr/local/bin/sentinelctl version | awk '{print $2 $3}' )
+  echo "SentinelOne is installed, version: $S1VERSION"
+  S1PROCESS=$(ps aux | grep "_sentinel.*sentineld$")
+
+  if [[ $(echo $S1PROCESS) ]] ; then
+
+    echo "SentinelOne Process is running..."
+    echo "Checking for Full Disk Access (FDA)..."
+    echo "<-Start Result->"
+    echo "Product=Installed"
+
+    S1STATUS=$(/usr/local/bin/sentinelctl status)
+    FDANEEDED=$(/usr/local/bin/sentinelctl status | grep "Missing" | awk '{print $3 $4 $5 $6}')
+
+    if [[ $(echo $FDANEEDED) ]] ; then
+
+      echo "Full disk access needs to be granted to SentinelOne before it can fully run."
+      FDAMSG2="Please instruct the end user to grant Full Disk Access in Security and Privacy settings to SentinelOne. https://sscf.ucsd.edu/security/sentinelone-endpoint-security-error-fix OR https://cdocs.sentinelone.net/Installing_on_macOS_High_Sierra-en.pdf"
+      echo $FDAMSG2
+      echo "{\"product\":\"SentinelOne Agent\",\"running\":false,\"upToDate\":false}" > '/usr/local/share/CentraStage/AEMAgent/antivirus.json'
+
+      ExitCode=1
+
+    else
+
+      echo "SentinelOne has full disk access and is running."
+
+      # Check if up to date
+
+      S1LASTSEEN=$(/usr/local/bin/sentinelctl status | grep 'Last Seen' | awk '{print $3 " " $4 " " $5}')
+      S1LASTSEEN=$(date -j -f '%m/%d/%y, %T %p' "${S1LASTSEEN}" +'%Y-%m-%d %T')
+      DATENOW=$(date +'%Y-%m-%d %T')
+      S1HOURSSINCECONNECTED=$(expr "$(($(date -j -f '%Y-%m-%d %T' "$DATENOW" '+%s') - $(date -j -f '%Y-%m-%d %T' "$S1LASTSEEN" '+%s')))" / 3600)
+
+      if [[ 10#$S1HOURSSINCECONNECTED -gt 24 ]] ; then
+
+        echo "SentinelOne hasn't checked in in over 24 hours. Out of Date"
+        echo "{\"product\":\"SentinelOne Agent\",\"running\":true,\"upToDate\":false}" > '/usr/local/share/CentraStage/AEMAgent/antivirus.json'
+
+        ExitCode=1
+
+    else
+
+        echo "SentinelOne has checked in within the last 24 hours. Up to date!"
+        echo "{\"product\":\"SentinelOne Agent\",\"running\":true,\"upToDate\":true}" > '/usr/local/share/CentraStage/AEMAgent/antivirus.json'
+
+        ExitCode=0
+
+      fi
+
+    fi
+
+    echo "<-End Result->"
+
+    echo "<-Start Diagnostic->"
+    echo "SentinelOne Agent is installed $FDAMSG2 Status: $S1STATUS"
+    echo "<-End Diagnostic->"
+
+  else
+
+    echo "SentinelOne Process is not running..."
+    ExitCode=1
+
+  fi
+
+
+else
+
+    echo "SentinelOne is not installed."
+    rm -f '/usr/local/share/CentraStage/AEMAgent/antivirus.json'
+    echo "<-Start Result->"
+    echo "Product=Not installed"
+    echo "<-End Result->"
+
+    echo "<-Start Diagnostic->"
+    echo "SentinelOne Agent is not installed"
+    echo "<-End Diagnostic->"
+
+    ExitCode=1
+
+fi
+
+echo "ExitCode: $ExitCode"
+exit $ExitCode
