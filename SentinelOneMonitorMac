@@ -1,5 +1,6 @@
 #!/bin/bash
 # Monitor if SentinelOne on MacOS is installed/running
+# Batch script
 
 MACOSVER=$(sw_vers -productVersion)
 echo "MacOS version: $MACOSVER"
