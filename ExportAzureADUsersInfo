@@ -29,6 +29,7 @@ $AzADUsers | Sort-Object GivenName | Select-Object `
 @{Label = "First name"; Expression = { $_.GivenName } },
 @{Label = "Last name"; Expression = { $_.Surname } },
 @{Label = "Display name"; Expression = { $_.DisplayName } },
+@{Label = "User logon name"; Expression = { $_.SamAccountName } },
 @{Label = "User principal name"; Expression = { $_.UserPrincipalName } },
 @{Label = "Street"; Expression = { $_.StreetAddress } },
 @{Label = "City"; Expression = { $_.City } },
