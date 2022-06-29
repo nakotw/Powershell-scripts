@@ -1,4 +1,5 @@
-#Export users attributes in specific OU
+#### Export active directory users attributes in specific OU
+
 # Split path
 $Path = Split-Path -Parent "C:\scripts\*.*"
 
