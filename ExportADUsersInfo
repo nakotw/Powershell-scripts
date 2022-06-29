@@ -14,11 +14,11 @@ $Csvfile = $Path + "\AllADUsers_$logDate.csv"
 Import-Module ActiveDirectory
 
 # Set distinguishedName as searchbase, you can use one OU or multiple OUs
-# Or use the root domain like DC=exoip,DC=local
+# Or use the root domain
 $DNs = @(
-    "OU=Sales,OU=Users,OU=Company,DC=exoip,DC=local",
-    "OU=IT,OU=Users,OU=Company,DC=exoip,DC=local",
-    "OU=Finance,OU=Users,OU=Company,DC=exoip,DC=local"
+    "PASTE OU HERE",
+    "PASTE OU HERE",
+    "PASTE OU HERE"
 )
 
 # Create empty array
