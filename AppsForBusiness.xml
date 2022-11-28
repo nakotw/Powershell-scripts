@@ -1,0 +1,13 @@
+<Configuration>
+    <Add OfficeClientEdition="64" Channel="Monthly">
+        <Product ID="O365BusinessRetail">
+            <Language ID="fr-fr"/>
+	        <ExcludeApp ID="InfoPath"/>
+        </Product>
+    </Add>
+    <Updates Enabled="TRUE" Channel="Monthly"/>
+    <Property Name="FORCEAPPSHUTDOWN" Value="TRUE"/>
+    <Display AcceptEULA="TRUE" Level="None" />
+    <Logging Level="Standard" Path="%temp%" />
+    <Property Name="SharedComputerLicensing" Value="0" />
+</Configuration>
