@@ -36,10 +36,6 @@ Invoke-RestMethod -Uri 'https://download.sysinternals.com/files/PSTools.zip' -Ou
 Write-Host "Extracting psexec.exe from archive" -ForegroundColor Yellow
 Expand-Archive -Path $env:TEMP\PSTools.zip -DestinationPath $env:TEMP\PSTools -Force
 
-##################################
-# Force reenrollment with psexec #
-##################################
-
 Write-Host "Starting psexec.exe with DeviceEnroller and AutoEnrollMDM command" -ForegroundColor Yellow
 $Process = Start-Process -FilePath $env:TEMP\PSTools\psexec.exe -ArgumentList "-i -s -accepteula cmd  /c `"deviceenroller.exe /c /AutoEnrollMDM`"" -Wait -NoNewWindow -PassThru
 if ($process.ExitCode -eq 0) {
