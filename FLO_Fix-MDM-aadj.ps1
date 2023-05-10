@@ -2,7 +2,7 @@
 Write-Host ""
 Write-Host "`tTool    :: Fix-MDM-aadj" -ForegroundColor Magenta
 Write-Host "`tAuthor  :: Florian Daminato" -ForegroundColor Magenta
-Write-Host "`tCompany  :: Micro Logic" -ForegroundColor Magenta
+Write-Host "`tCompany :: Micro Logic" -ForegroundColor Magenta
 Write-Host ""
     
 #Fix device AADJ but not MDM
