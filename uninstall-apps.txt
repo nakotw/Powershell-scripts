@@ -1,3 +1,4 @@
 Version 1.0
-MedZed.youtubetomp3
-Mp3tag.Mp3tag
+Mozilla.Firefox
+PuTTY.PuTTY
+Ookla.Speedtest.Desktop
