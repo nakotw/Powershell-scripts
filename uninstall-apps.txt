@@ -1,4 +1,3 @@
-Version 1.0
 Mozilla.Firefox
 PuTTY.PuTTY
 Ookla.Speedtest.Desktop
