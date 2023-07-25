@@ -10,7 +10,7 @@
   <Property Name="FORCEAPPSHUTDOWN" Value="TRUE" />
   <Property Name="DeviceBasedLicensing" Value="0" />
   <Property Name="SCLCacheOverride" Value="0" />
-  <Property Name="TenantId" Value="2dcf5586-9ea8-4885-ab85-11936f59e16b" />
+  <Property Name="TenantId" Value="91bf3f59-293f-4854-b058-f9e1c4b3206a" />
   <Updates Enabled="TRUE" />
   <RemoveMSI />
   <AppSettings>
