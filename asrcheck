@@ -3,7 +3,6 @@ $RulesActions = Get-MpPreference | Select-Object -ExpandProperty AttackSurfaceRe
 $RulesExclusions = Get-MpPreference | Select-Object -ExpandProperty AttackSurfaceReductionOnlyExclusions
 
 $warningmessagecolor = "yellow"
-$backgroundcolor = "blue"
 
 $RulesIdsArray = @()
 $RulesIdsArray += $RulesIds
@@ -20,15 +19,15 @@ ForEach ($i in $RulesActions) {
     ElseIf ($RulesActions[$counter] -eq 6) { $TotalWarn++ }
     $counter++
 }
-Write-Host 
-write-host -ForegroundColor Gray -backgroundcolor Blue "Attack Surface Reduction Rules`n"
+
+
 write-host -foregroundcolor $warningmessagecolor "====================================== ASR Summary ======================================`n"
 
 Write-Host "=> There's"($RulesIds).Count"rules configured"
 Write-Host "=>"$TotalNotConfigured "in Disabled Mode **" $TotalAudit "in Audit Mode **" $TotalBlock "in Block Mode **" $TotalWarn "in Warn Mode"
 
 Write-Host 
-write-host -foregroundcolor $warningmessagecolor "====================================== ASR Rules ======================================`n"
+write-host -foregroundcolor $warningmessagecolor "====================================== ASR Rules and status ======================================`n"
 Write-Host 
 
 $counter = 0
@@ -76,4 +75,9 @@ ForEach ($f in $RulesExclusions) {
 Write-Host 
 write-host -foregroundcolor $warningmessagecolor "====================================== ASR per rules Exclusions ======================================`n"
 
-Get-MpPreference | select AttackSurfaceReductionRules_RuleSpecificExclusions, AttackSurfaceReductionRules_RuleSpecificExclusions_Id
+Get-MpPreference | Select-Object AttackSurfaceReductionRules_RuleSpecificExclusions, AttackSurfaceReductionRules_Ids
+
+Write-Host 
+write-host -foregroundcolor $warningmessagecolor "====================================== ExclusionProcess ======================================`n"
+
+Get-MpPreference |Select-Object -ExpandProperty ExclusionProcess
