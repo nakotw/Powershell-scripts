@@ -1,0 +1,15 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Fortinet\FortiClient\Sslvpn\Tunnels\Bernier Beaudry SAML]
+"Description"=""
+"Server"="vpn.bernierbeaudry.com:10443"
+"DATA1"="EncLM e58ee5a636cd47ec9b402dc08a06b9614383924d3b842e383047f3e469ea20693d29d034add83960168ce4b270788d46c4b5c4b9ed0c1ff809dd2b1f15e8ade421a46848dc4e8d68d025da1922569eb65d831fb6dd65bdc800f88cdff2e8eb594b7d3766254f5458925dd1a28d5f41b90ba4de159d746d90f80874aa6420a90fcb863381a3d241419b718f6801f6e8a794fac1cc6b3a3145bc2c771b243ebce0fc438b7dbddaa1e0dbda3e79e8d84d2f503a8258e54fcf1417168628f0d81edaf511bf42fdc5bfece92798d243f18e761241a9ecbc8684c6d24097a2f6638a039d16eda544e352100ca05a64b49db559c7413d630c41ea5d45cf5b0484e3b293f794f00f01de0c516b57a284a23128348c44e594e2f2cdf3c38990b09fe8cff18c9d15f08507"
+"promptusername"=dword:00000001
+"promptcertificate"=dword:00000000
+"DATA3"=""
+"ServerCert"="1"
+"dual_stack"=dword:00000000
+"sso_enabled"=dword:00000001
+"use_external_browser"=dword:00000000
+"azure_auto_login"=dword:00000000
+
