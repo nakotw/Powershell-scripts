@@ -165,17 +165,27 @@ Catch {
     Write-Warning -Object  "Failed to uninstall HP Wolf Security Application Support for Chrome 112.0.5615.206 using MSI - Error message: $($_.Exception.Message)"
 }
 
+#HP Wolf Security - Console
+MsiExec.exe /X "{2912F869-097A-407B-A2A5-388799DBA64C }"
 
+#HP Wolf Security Application Support for Office
+MsiExec.exe /I "{827A208E-A87A-44F2-A8AB-AB86A9445794 }"
+
+#HP Security Update Service
+MsiExec.exe /X "{F32CC23F-2FCC-42AC-A0A1-EF8AC7A21514 }"
+
+#HP Wolf Security Application Support for Chrome 112.0.5615.206
+MsiExec.exe /I "{FD173350-467F-41BD-B295-DA2B5740B7CE}"
 
 
 # # Uncomment this section to see what is left behind
-# Write-Host "Checking stuff after running script"
-# Write-Host "For Get-AppxPackage -AllUsers"
-# Get-AppxPackage -AllUsers | where {$_.Name -like "*HP*"}
-# Write-Host "For Get-AppxProvisionedPackage -Online"
-# Get-AppxProvisionedPackage -Online | where {$_.DisplayName -like "*HP*"}
-# Write-Host "For Get-Package"
-# Get-Package | select Name, FastPackageReference, ProviderName, Summary | Where {$_.Name -like "*HP*"} | Format-List
+Write-Host "Checking stuff after running script"
+Write-Host "For Get-AppxPackage -AllUsers"
+Get-AppxPackage -AllUsers | where {$_.Name -like "*HP*"}
+Write-Host "For Get-AppxProvisionedPackage -Online"
+Get-AppxProvisionedPackage -Online | where {$_.DisplayName -like "*HP*"}
+Write-Host "For Get-Package"
+Get-Package | select Name, FastPackageReference, ProviderName, Summary | Where {$_.Name -like "*HP*"} | Format-List
 
 # # Feature - Ask for reboot after running the script
 # $input = Read-Host "Restart computer now [y/n]"
