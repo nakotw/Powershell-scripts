@@ -102,6 +102,72 @@ Catch {
     Write-Warning -Object  "Failed to uninstall HP Wolf Security 2 using MSI - Error message: $($_.Exception.Message)"
 }
 
+# Fallback attempt 3 to remove HP Wolf Security using msiexec
+Try {
+    MsiExec.exe /X "{5A0FD8F0-0091-11EE-8EF1-3863BB3CB5A8}" /qn /norestart
+    Write-Host -Object "Fallback to MSI uninistall for HP Wolf 2 Security initiated"
+}
+Catch {
+    Write-Warning -Object  "Failed to uninstall HP Wolf Security 2 using MSI - Error message: $($_.Exception.Message)"
+}
+
+# Fallback attempt 3 to remove HP Wolf Security Console using msiexec
+Try {
+    MsiExec.exe /X "{ 2912F869-097A-407B-A2A5-388799DBA64C }" /qn /norestart
+    Write-Host -Object "Fallback to MSI uninistall for HP Wolf 2 Security initiated"
+}
+Catch {
+    Write-Warning -Object  "Failed to uninstall HP Wolf Security Console using MSI - Error message: $($_.Exception.Message)"
+}
+
+# Fallback attempt 3 to remove HP Wolf Security Application Support for Office using msiexec
+Try {
+    MsiExec.exe /I "{827A208E-A87A-44F2-A8AB-AB86A9445794}" /qn /norestart
+    Write-Host -Object "Fallback to MSI uninistall for HP Wolf Security Console initiated"
+}
+Catch {
+    Write-Warning -Object  "Failed to uninstall HP Wolf Security Console using MSI - Error message: $($_.Exception.Message)"
+}
+
+# Fallback attempt 3 to remove HP Wolf Security Application Support for Sure Sense using msiexec
+Try {
+    MsiExec.exe /I "{B3A92BA1-5A53-4063-B41B-E0C51D6A6146 }" /qn /norestart
+    Write-Host -Object "Fallback to MSI uninistall for HP Wolf Security Application Support for Sure Sense initiated"
+}
+Catch {
+    Write-Warning -Object  "Failed to uninstall HP Wolf Security Application Support for Sure Sense using MSI - Error message: $($_.Exception.Message)"
+}
+
+# Fallback attempt 3 to remove HP Sure Recover using msiexec
+Try {
+    MsiExec.exe /X "{DE19530B-11E5-4F64-BAFF-751F9182E593 }" /qn /norestart
+    Write-Host -Object "Fallback to MSI uninistall for HP Sure Recover initiated"
+}
+Catch {
+    Write-Warning -Object  "Failed to uninstall HP Sure Recover using MSI - Error message: $($_.Exception.Message)"
+}
+
+# Fallback attempt 3 to remove HP Sure Run Mobile using msiexec
+Try {
+    MsiExec.exe /X "{F5CEB990-61F1-46F0-9AAE-9A3A6FED8BC7}" /qn /norestart
+    Write-Host -Object "Fallback to MSI uninistall for HP Sure Run Mobile initiated"
+}
+Catch {
+    Write-Warning -Object  "Failed to uninstall HP Sure Run Mobile using MSI - Error message: $($_.Exception.Message)"
+}
+
+# Fallback attempt 3 to remove HP Wolf Security Application Support for Chrome 112.0.5615.206 using msiexec
+Try {
+    MsiExec.exe /I "{FD173350-467F-41BD-B295-DA2B5740B7CE}" /qn /norestart
+    Write-Host -Object "Fallback to MSI uninistall for HP Wolf Security Application Support for Chrome 112.0.5615.206 initiated"
+}
+Catch {
+    Write-Warning -Object  "Failed to uninstall HP Wolf Security Application Support for Chrome 112.0.5615.206 using MSI - Error message: $($_.Exception.Message)"
+}
+
+
+
+
 # # Uncomment this section to see what is left behind
 # Write-Host "Checking stuff after running script"
 # Write-Host "For Get-AppxPackage -AllUsers"
