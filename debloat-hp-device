@@ -41,12 +41,12 @@ $UninstallPrograms = @(
 $HPidentifier = "AD2F1837"
 
 $InstalledPackages = Get-AppxPackage -AllUsers `
-            | Where-Object {($UninstallPackages -contains $_.Name) -or ($_.Name -match "^$HPidentifier")}
+| Where-Object { ($UninstallPackages -contains $_.Name) -or ($_.Name -match "^$HPidentifier") }
 
 $ProvisionedPackages = Get-AppxProvisionedPackage -Online `
-            | Where-Object {($UninstallPackages -contains $_.DisplayName) -or ($_.DisplayName -match "^$HPidentifier")}
+| Where-Object { ($UninstallPackages -contains $_.DisplayName) -or ($_.DisplayName -match "^$HPidentifier") }
 
-$InstalledPrograms = Get-Package | Where-Object {$UninstallPrograms -contains $_.Name}
+$InstalledPrograms = Get-Package | Where-Object { $UninstallPrograms -contains $_.Name }
 
 # Remove appx provisioned packages - AppxProvisionedPackage
 ForEach ($ProvPackage in $ProvisionedPackages) {
@@ -57,7 +57,7 @@ ForEach ($ProvPackage in $ProvisionedPackages) {
         $Null = Remove-AppxProvisionedPackage -PackageName $ProvPackage.PackageName -Online -ErrorAction Stop
         Write-Host -Object "Successfully removed provisioned package: [$($ProvPackage.DisplayName)]"
     }
-    Catch {Write-Warning -Message "Failed to remove provisioned package: [$($ProvPackage.DisplayName)]"}
+    Catch { Write-Warning -Message "Failed to remove provisioned package: [$($ProvPackage.DisplayName)]" }
 }
 
 # Remove appx packages - AppxPackage
@@ -69,7 +69,7 @@ ForEach ($AppxPackage in $InstalledPackages) {
         $Null = Remove-AppxPackage -Package $AppxPackage.PackageFullName -AllUsers -ErrorAction Stop
         Write-Host -Object "Successfully removed Appx package: [$($AppxPackage.Name)]"
     }
-    Catch {Write-Warning -Message "Failed to remove Appx package: [$($AppxPackage.Name)]"}
+    Catch { Write-Warning -Message "Failed to remove Appx package: [$($AppxPackage.Name)]" }
 }
 
 # Remove installed programs
@@ -81,111 +81,63 @@ $InstalledPrograms | ForEach-Object {
         $Null = $_ | Uninstall-Package -AllVersions -Force -ErrorAction Stop
         Write-Host -Object "Successfully uninstalled: [$($_.Name)]"
     }
-    Catch {Write-Warning -Message "Failed to uninstall: [$($_.Name)]"}
+    Catch { Write-Warning -Message "Failed to uninstall: [$($_.Name)]" }
 }
 
 # Fallback attempt 1 to remove HP Wolf Security using msiexec
-Try {
-    MsiExec /x "{0E2E04B0-9EDD-11EB-B38C-10604B96B11E}" /qn /norestart
-    Write-Host -Object "Fallback to MSI uninistall for HP Wolf Security initiated"
-}
-Catch {
-    Write-Warning -Object "Failed to uninstall HP Wolf Security using MSI - Error message: $($_.Exception.Message)"
-}
+MsiExec /x "{0E2E04B0-9EDD-11EB-B38C-10604B96B11E}" /qn /norestart
+
 
 # Fallback attempt 2 to remove HP Wolf Security using msiexec
-Try {
-    MsiExec /x "{4DA839F0-72CF-11EC-B247-3863BB3CB5A8}" /qn /norestart
-    Write-Host -Object "Fallback to MSI uninistall for HP Wolf 2 Security initiated"
-}
-Catch {
-    Write-Warning -Object  "Failed to uninstall HP Wolf Security 2 using MSI - Error message: $($_.Exception.Message)"
-}
+MsiExec /x "{4DA839F0-72CF-11EC-B247-3863BB3CB5A8}" /qn /norestart
+
 
 # Fallback attempt 3 to remove HP Wolf Security using msiexec
-Try {
-    MsiExec.exe /X "{5A0FD8F0-0091-11EE-8EF1-3863BB3CB5A8}" /qn /norestart
-    Write-Host -Object "Fallback to MSI uninistall for HP Wolf 2 Security initiated"
-}
-Catch {
-    Write-Warning -Object  "Failed to uninstall HP Wolf Security 2 using MSI - Error message: $($_.Exception.Message)"
-}
+MsiExec.exe /X "{5A0FD8F0-0091-11EE-8EF1-3863BB3CB5A8}" /qn /norestart
+
 
 # Fallback attempt 3 to remove HP Wolf Security Console using msiexec
-Try {
-    MsiExec.exe /X "{ 2912F869-097A-407B-A2A5-388799DBA64C }" /qn /norestart
-    Write-Host -Object "Fallback to MSI uninistall for HP Wolf 2 Security initiated"
-}
-Catch {
-    Write-Warning -Object  "Failed to uninstall HP Wolf Security Console using MSI - Error message: $($_.Exception.Message)"
-}
+MsiExec.exe /X "{ 2912F869-097A-407B-A2A5-388799DBA64C }" /qn /norestart
+
 
 # Fallback attempt 3 to remove HP Wolf Security Application Support for Office using msiexec
-Try {
-    MsiExec.exe /I "{827A208E-A87A-44F2-A8AB-AB86A9445794}" /qn /norestart
-    Write-Host -Object "Fallback to MSI uninistall for HP Wolf Security Console initiated"
-}
-Catch {
-    Write-Warning -Object  "Failed to uninstall HP Wolf Security Console using MSI - Error message: $($_.Exception.Message)"
-}
+MsiExec.exe /I "{827A208E-A87A-44F2-A8AB-AB86A9445794}" /qn /norestart
+
 
 # Fallback attempt 3 to remove HP Wolf Security Application Support for Sure Sense using msiexec
-Try {
-    MsiExec.exe /I "{B3A92BA1-5A53-4063-B41B-E0C51D6A6146 }" /qn /norestart
-    Write-Host -Object "Fallback to MSI uninistall for HP Wolf Security Application Support for Sure Sense initiated"
-}
-Catch {
-    Write-Warning -Object  "Failed to uninstall HP Wolf Security Application Support for Sure Sense using MSI - Error message: $($_.Exception.Message)"
-}
+MsiExec.exe /I "{B3A92BA1-5A53-4063-B41B-E0C51D6A6146 }" /qn /norestart
+
 
 # Fallback attempt 3 to remove HP Sure Recover using msiexec
-Try {
-    MsiExec.exe /X "{DE19530B-11E5-4F64-BAFF-751F9182E593 }" /qn /norestart
-    Write-Host -Object "Fallback to MSI uninistall for HP Sure Recover initiated"
-}
-Catch {
-    Write-Warning -Object  "Failed to uninstall HP Sure Recover using MSI - Error message: $($_.Exception.Message)"
-}
+MsiExec.exe /X "{DE19530B-11E5-4F64-BAFF-751F9182E593 }" /qn /norestart
 
 # Fallback attempt 3 to remove HP Sure Run Mobile using msiexec
-Try {
-    MsiExec.exe /X "{F5CEB990-61F1-46F0-9AAE-9A3A6FED8BC7}" /qn /norestart
-    Write-Host -Object "Fallback to MSI uninistall for HP Sure Run Mobile initiated"
-}
-Catch {
-    Write-Warning -Object  "Failed to uninstall HP Sure Run Mobile using MSI - Error message: $($_.Exception.Message)"
-}
+MsiExec.exe /X "{F5CEB990-61F1-46F0-9AAE-9A3A6FED8BC7}" /qn /norestart
 
 # Fallback attempt 3 to remove HP Wolf Security Application Support for Chrome 112.0.5615.206 using msiexec
-Try {
-    MsiExec.exe /I "{FD173350-467F-41BD-B295-DA2B5740B7CE}" /qn /norestart
-    Write-Host -Object "Fallback to MSI uninistall for HP Wolf Security Application Support for Chrome 112.0.5615.206 initiated"
-}
-Catch {
-    Write-Warning -Object  "Failed to uninstall HP Wolf Security Application Support for Chrome 112.0.5615.206 using MSI - Error message: $($_.Exception.Message)"
-}
+MsiExec.exe /I "{FD173350-467F-41BD-B295-DA2B5740B7CE}" /qn /norestart
 
 #HP Wolf Security - Console
-MsiExec.exe /X "{2912F869-097A-407B-A2A5-388799DBA64C }"
+MsiExec.exe /X "{2912F869-097A-407B-A2A5-388799DBA64C }" /qn /norestart
 
 #HP Wolf Security Application Support for Office
-MsiExec.exe /I "{827A208E-A87A-44F2-A8AB-AB86A9445794 }"
+MsiExec.exe /I "{827A208E-A87A-44F2-A8AB-AB86A9445794 }" /qn /norestart
 
 #HP Security Update Service
-MsiExec.exe /X "{F32CC23F-2FCC-42AC-A0A1-EF8AC7A21514 }"
+MsiExec.exe /X "{F32CC23F-2FCC-42AC-A0A1-EF8AC7A21514 }" /qn /norestart
 
 #HP Wolf Security Application Support for Chrome 112.0.5615.206
-MsiExec.exe /I "{FD173350-467F-41BD-B295-DA2B5740B7CE}"
+MsiExec.exe /I "{FD173350-467F-41BD-B295-DA2B5740B7CE}" /qn /norestart
 
 
 # # Uncomment this section to see what is left behind
 Write-Host "Checking stuff after running script"
 Write-Host "For Get-AppxPackage -AllUsers"
-Get-AppxPackage -AllUsers | where {$_.Name -like "*HP*"}
+Get-AppxPackage -AllUsers | where { $_.Name -like "*HP*" }
 Write-Host "For Get-AppxProvisionedPackage -Online"
-Get-AppxProvisionedPackage -Online | where {$_.DisplayName -like "*HP*"}
+Get-AppxProvisionedPackage -Online | where { $_.DisplayName -like "*HP*" }
 Write-Host "For Get-Package"
-Get-Package | select Name, FastPackageReference, ProviderName, Summary | Where {$_.Name -like "*HP*"} | Format-List
+Get-Package | select Name, FastPackageReference, ProviderName, Summary | Where { $_.Name -like "*HP*" } | Format-List
 
 # # Feature - Ask for reboot after running the script
 # $input = Read-Host "Restart computer now [y/n]"
