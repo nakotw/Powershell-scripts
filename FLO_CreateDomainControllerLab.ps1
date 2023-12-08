@@ -1,3 +1,5 @@
+#step 1
+
 #Setting up the NIC, Renaming the Computer, and Rebooting
 # Define the Computer Name
 $computerName = "dc1"
@@ -27,13 +29,9 @@ Set-DNSClientServerAddress –interfaceIndex $ipIF –ServerAddresses $IPv4DNS
 # Rename the Computer, and Restart
 Rename-Computer -NewName $computerName -force
 Restart-Computer
- 
 
 
-
-
-
-
+#step 2
 
 #Install the ADDS Bits and Promote
 $domainName  = "labflo.com"
@@ -63,11 +61,7 @@ $forestProperties = @{
 Install-ADDSForest @forestProperties
 
 
-
-
-
-
-
+#step 3
 
 #DNS, Sites & Services, and Time Keeping
 # Define DNS and Sites & Services Settings
@@ -96,14 +90,9 @@ $Zones | Set-DnsServerZoneAging -Aging $True
 
 # Set Time Configuration
 w32tm /config /manualpeerlist:$timePeerList /syncfromflags:manual /reliable:yes /update
- 
 
 
-
-
-
-
-
+#step 4
 
 #Build an OU Structure
 $baseDN = "DC=LABFLO,DC=com"
@@ -116,24 +105,18 @@ New-ADOrganizationalUnit "Service Accounts" -path $resourcesDN
 New-ADOrganizationalUnit "Workstations" -path $resourcesDN
 New-ADOrganizationalUnit "Servers" -path $resourcesDN
 New-ADOrganizationalUnit "Users" -path $resourcesDN
- 
 
 
-
-
-
-
+#step 5
 
 #Enable the Recycle Bin
 $ForestFQDN = "labflo.com"
 $SchemaDC   = "dc1.labflo.com"
 
 Enable-ADOptionalFeature –Identity 'Recycle Bin Feature' –Scope ForestOrConfigurationSet –Target $ForestFQDN -Server $SchemaDC -confirm:$false
- 
 
 
-
-
+#step 6
 
 #Create User Accounts
 # Prompt for a Password
@@ -182,16 +165,13 @@ $userProperties = @{
 New-ADUser @userProperties
 
 
-
-
+#step 7
 
 #Secure & Disable the Administrator Account (optional in lab)
 #Set-ADUser Administrator -AccountNotDelegated:$true -SmartcardLogonRequired:$true -Enabled:$false
- 
 
 
-
-
+#step 8
 
 #Create an Active Directory Snapshot
 C:\Windows\system32\ntdsutil.exe snapshot "activate instance ntds" create quit quit
