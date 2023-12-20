@@ -5,7 +5,7 @@
 #Setting up the NIC, Renaming the Computer, and Rebooting
 # Define the Computer Name
 $computerName = "dc1"
-
+e
 # Define the IPv4 Addressing
 $IPv4Address = "10.10.100.25"
 $IPv4Prefix = "24"
@@ -137,13 +137,13 @@ $Password = Read-Host -assecurestring "User Password"
 # Create a Privileged Account
 $userProperties = @{
 
-    Name                 = "John Dougherty EA"
-    GivenName            = "John"
-    Surname              = "Dougherty EA"
-    DisplayName          = "John Dougherty EA"
+    Name                 = "Jo Louis Admin"
+    GivenName            = "Jo"
+    Surname              = "Louis"
+    DisplayName          = "Jo Louis Admin"
     Path                 = "OU=Admin Users,OU=Resources,DC=labflo,DC=com"
-    SamAccountName       = "dougherty-ea"
-    UserPrincipalName    = "dougherty-ea@labflo.com"
+    SamAccountName       = "jo.louis.adm"
+    UserPrincipalName    = "jo.louis.adm@labflo.com"
     AccountPassword      = $Password
     PasswordNeverExpires = $True
     Enabled              = $True
@@ -160,13 +160,13 @@ Add-ADGroupMember "Administrateurs du schéma" $userProperties.SamAccountName
 # Create a Non-Privileged User Account
 $userProperties = @{
 
-    Name                 = "John Dougherty"
-    GivenName            = "John"
-    Surname              = "Dougherty"
-    DisplayName          = "John Dougherty"
+    Name                 = "Flo"
+    GivenName            = "Dam"
+    Surname              = "Flo"
+    DisplayName          = "Flo Dam"
     Path                 = "OU=Users,OU=Resources,DC=labflo,DC=com"
-    SamAccountName       = "john.dougherty"
-    UserPrincipalName    = "john.dougherty@labflo.com"
+    SamAccountName       = "flo.dam"
+    UserPrincipalName    = "flo.dam@labflo.com"
     AccountPassword      = $Password
     PasswordNeverExpires = $True
     Enabled              = $True
