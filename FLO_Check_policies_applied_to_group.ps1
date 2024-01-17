@@ -1,3 +1,10 @@
+Write-Host ""
+Write-Host "`tTool         :: Check policies" -ForegroundColor Magenta
+Write-Host "`tDescription  :: Check policies applied to a group" -ForegroundColor Magenta
+Write-Host "`tAuthor       :: Florian Daminato" -ForegroundColor Magenta
+Write-Host "`tCompany      :: FDCORP" -ForegroundColor Magenta
+Write-Host ""
+
 #Install-Module -Name Microsoft.Graph.DeviceManagement -Force -AllowClobber
 #Install-Module -Name Microsoft.Graph.Groups -Force -AllowClobber
 Import-Module -Name Microsoft.Graph.Groups
