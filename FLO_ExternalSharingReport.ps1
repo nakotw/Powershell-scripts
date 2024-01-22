@@ -6,11 +6,6 @@ Description:    This script exports SharePoint Online external user file access 
 ( •.•)
 / > 🍪  u want this cookie ?
 
-1.The script uses modern authentication to connect to Exchange Online.    
-2.The script can be executed with MFA enabled account too.    
-3.Exports report results to CSV file.    
-4.Allows you to generate an external sharing report for a custom period.    
-5.Automatically installs the EXO V2 module (if not installed already).
 #>
 
 Param
@@ -249,21 +244,8 @@ If($OutputEvents -eq 0)
 }
 else
 {
- Write-Host `nThe output file contains $OutputEvents audit records
- if((Test-Path -Path $OutputCSV) -eq "True") 
- {
-  Write-Host `n The Output file availble in: -NoNewline -ForegroundColor Yellow
-  Write-Host $OutputCSV 
-  Write-Host `n~~ Script prepared by AdminDroid Community ~~`n -ForegroundColor Green
-  Write-Host "~~ Check out " -NoNewline -ForegroundColor Green; Write-Host "admindroid.com" -ForegroundColor Yellow -NoNewline; Write-Host " to get access to 1800+ Microsoft 365 reports. ~~" -ForegroundColor Green `n`n
-  $Prompt = New-Object -ComObject wscript.shell   
-  $UserInput = $Prompt.popup("Do you want to open output file?",`   
- 0,"Open Output File",4)   
-  If ($UserInput -eq 6)   
-  {   
-   Invoke-Item "$OutputCSV"   
-  } 
- }
+    Write-Host "Opening results ..."
+    Invoke-Item "$OutputCSV"
 }
 
 #Disconnect Exchange Online session
