@@ -2,12 +2,10 @@
 Name:           Office 365 external user file access report
 Description:    This script exports SharePoint Online external user file access report to CSV
 
-+----+
-+ 🦖 +
-+----+
+{\__/}
+( •.•)
+/ > 🍪  u want this cookie ?
 
-Script Highlights: 
-~~~~~~~~~~~~~~~~~
 1.The script uses modern authentication to connect to Exchange Online.    
 2.The script can be executed with MFA enabled account too.    
 3.Exports report results to CSV file.    
