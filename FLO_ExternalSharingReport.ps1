@@ -1,7 +1,10 @@
-﻿<#
+<#
 Name:           Office 365 external user file access report
 Description:    This script exports SharePoint Online external user file access report to CSV
-Version:        1.0
+
++----+
++ 🦖 +
++----+
 
 Script Highlights: 
 ~~~~~~~~~~~~~~~~~
