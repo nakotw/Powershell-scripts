@@ -1,6 +1,6 @@
 <#
 
-Name:           immutable.ps1
+Name:           Hardmatch_immutable.ps1
 Description:    Hardmatch immutableid with Microsoft 365 users
 
 hardmatchuser.csv must have this format
