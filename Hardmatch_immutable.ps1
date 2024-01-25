@@ -5,10 +5,9 @@ Description:    Hardmatch immutableid with Microsoft 365 users
 
 hardmatchuser.csv must have this format
 
-samaacountname | userprincipal name
-______________________________________
-adelev         | adelev@fdcorp.ca
-flod           | flod@fdcorp.ca
+id,upn
+adelev,adelev@fdcorp.ca
+flod,flod@fdcorp.ca
 
 
 {\__/}
