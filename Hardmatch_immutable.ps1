@@ -13,7 +13,7 @@ flod           | flod@fdcorp.ca
 
 {\__/}
 ( •.•)
-/ > 🍪  u want this cookie ?
+/ > 🍪  relax, take this cookie
 
 #>
 
