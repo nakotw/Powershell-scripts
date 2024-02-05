@@ -14,7 +14,7 @@ Exemple : $PackageName = "VideoLAN.VLC"
 #>
 
 #Fill this variable with the Winget package ID
-$PackageName = "ShareX.ShareX"
+$PackageName = "VideoLAN.VLC"
 
 #Start Logging
 Start-Transcript -Path "C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\$($PackageName)_detect.log" -Append 
