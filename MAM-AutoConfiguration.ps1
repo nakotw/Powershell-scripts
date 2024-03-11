@@ -141,7 +141,7 @@ Try {
 		managedBrowserToOpenLinksRequired = $false
 		managedBrowser = "notConfigured"
 		maximumPinRetries = "9"
-		minimumPinLength = "6"
+		minimumPinLength = "4"
 		previousPinBlockCount = "0"
 		notificationRestriction = "allow"
 		organizationalCredentialsRequired = $false
@@ -234,7 +234,7 @@ $params = @{
 	managedBrowserToOpenLinksRequired = $false
 	managedBrowser = "notConfigured"
 	maximumPinRetries = 9
-	minimumPinLength = 6
+	minimumPinLength = 4
 	previousPinBlockCount = 0
 	notificationRestriction = "allow"
 	organizationalCredentialsRequired = $false
