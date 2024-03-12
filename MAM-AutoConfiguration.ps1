@@ -7,13 +7,6 @@ Creates a conditional access policy targeting the MAM_PilotGroup security group 
 
 #>
 
-# Cool ASCII art.
-Write-Host ""
-Write-Host "`tTool    :: Automatically configure MAM policies for iOs and Android Unmanaged devices." -ForegroundColor Magenta
-Write-Host "`tAuthor  :: Florian Daminato" -ForegroundColor Magenta
-Write-Host "`tCompany :: ITI" -ForegroundColor Magenta
-Write-Host ""
-
 Write-Host -ForegroundColor DarkYellow "Checking for log directory C:\temp for transcript"
 $LogPath = "C:\Temp"
 $LogPathExists = Test-Path $LogPath
