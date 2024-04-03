@@ -1,3 +1,2 @@
-PowerShell.exe -ExecutionPolicy Unrestricted
 Install-Script -name Get-WindowsAutopilotInfo -Force
 Get-WindowsAutopilotInfo -Online
