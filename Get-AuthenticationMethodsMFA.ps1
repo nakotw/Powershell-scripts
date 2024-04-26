@@ -1,23 +1,3 @@
-<#
-    .SYNOPSIS
-    Get-AuthenticationMethods.ps1
-
-    .DESCRIPTION
-    Export users authentication methods report from Micrososoft Graph and know which MFA method
-    is set as default for each user and what MFA methods are registered for each user.
-
-    .LINK
-    www.alitajran.com/get-mfa-status-entra/
-
-    .NOTES
-    Written by: ALI TAJRAN
-    Website:    www.alitajran.com
-    LinkedIn:   linkedin.com/in/alitajran
-
-    .CHANGELOG
-    V1.00, 10/12/2023 - Initial version
-#>
-
 # Export path for CSV file
 $csvPath = "C:\Temp\AuthenticationReport.csv"
 
