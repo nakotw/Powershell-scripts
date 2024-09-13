@@ -1,0 +1,1 @@
+Remove-Item -Path "C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\dummyantidote-install.log" -Force
